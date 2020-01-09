@@ -2,16 +2,21 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
 
-function Main() {
+function Expense(props) {
   return (
     <Container>
-      <form action=''>
+      <form onSubmit={props.handleSubmit}>
         <Row>
           <Col>
             <span>Type: </span>
           </Col>
           <Col>
-            <select name='type' id=''>
+            <select
+              name={props.expense.type}
+              value={props.expense.type}
+              onChange={props.handleChange}
+            >
+              <option value=''>Please Select</option>
               <option value='card'>Card</option>
               <option value='cash'>Cash</option>
               <option value='Check'>Check</option>
@@ -25,8 +30,10 @@ function Main() {
           <Col>
             <input
               type='text'
-              name='item-name'
+              name={props.expense.name}
               placeholder='What did you buy?'
+              onChange={props.handleChange}
+              value={props.expense.name}
             />
           </Col>
         </Row>
@@ -35,23 +42,32 @@ function Main() {
             <span>Date: </span>
           </Col>
           <Col>
-            <input type='date' name='date' />
+            <input
+              type='date'
+              name='date'
+              onChange={props.handleChange}
+              value={props.expense.date}
+            />
           </Col>
           <Col>
             <span>Amount: </span>
           </Col>
           <Col>
-            <input type='number' name='amount' />
+            <input
+              type='number'
+              name='amount'
+              placeholder='$ ?'
+              onChange={props.handleChange}
+              value={props.expense.amount}
+            />
           </Col>
         </Row>
-      </form>
-      <Container>
         <Col>
           <button>Add Expense</button>
         </Col>
-      </Container>
+      </form>
     </Container>
   );
 }
 
-export default Main;
+export default Expense;
