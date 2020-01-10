@@ -12,7 +12,7 @@ function Expense(props) {
           </Col>
           <Col>
             <select
-              name={props.expense.type}
+              name='type'
               value={props.expense.type}
               onChange={props.handleChange}
             >
@@ -30,7 +30,7 @@ function Expense(props) {
           <Col>
             <input
               type='text'
-              name={props.expense.name}
+              name='name'
               placeholder='What did you buy?'
               onChange={props.handleChange}
               value={props.expense.name}

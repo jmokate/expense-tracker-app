@@ -1,7 +1,8 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AddedExpense from "./AddedExpense";
 
-function Table() {
+function ListOfAddedExpenses() {
   return (
     <table>
       <tbody>
@@ -16,4 +17,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default ListOfAddedExpenses;

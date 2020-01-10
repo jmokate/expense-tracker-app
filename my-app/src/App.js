@@ -10,6 +10,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      expenses: [],
       expense: {
         type: "",
         name: "",
@@ -19,17 +20,45 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addExpenseToList = this.addExpenseToList.bind(this);
   }
 
   handleChange(event) {
     console.log("changed");
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const expense = { ...this.state.expense };
+    expense[name] = value;
+    console.log(name);
+    console.log(value);
+    this.setState({
+      expense
+    });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    alert("submitted");
+
+    const entireExpenseObject = this.state.expenses;
+    entireExpenseObject.id = Date.now();
+    //get updated version of state
+    entireExpenseObject.push(this.state.expense);
+    this.setState({ expenses: entireExpenseObject });
+    console.log(entireExpenseObject);
+    console.log(this.state.expenses);
+    this.addExpenseToList(entireExpenseObject);
+  }
+
+  addExpenseToList(event) {
+    console.log("expense added");
+    //get expense array here
+    const addedExpenses = [this.state.expenses];
+    //pull newest expense
+    //const newestExpense = addedExpenses.length - 1;
+    //add it to the list
+    this.setState({
+      addedExpenses
+    });
+    console.log(addedExpenses);
   }
 
   render() {
@@ -43,8 +72,9 @@ class App extends React.Component {
         />
         <Table />
         <AddedExpense
-          expense={this.state.expense}
-          handleChange={this.handleChange}
+          expense={this.state.expenses}
+          addExpense={this.addExpenseToList}
+          //handleChange={this.handleChange}
         />
       </div>
     );

@@ -6,14 +6,10 @@ function AddedExpense(props) {
     <table>
       <tbody>
         <tr>
-          <th onChange={() => props.handleChange(props.expense.type)}>
-            {props.expense.type}
-          </th>
-          <th onChange={() => props.handleChange(props.expense.name)}>
-            {props.expense.name}
-          </th>
-          <th>{props.expense.date}</th>
-          <th>{props.expense.amount}</th>
+          <td>{props.expense.type}</td>
+          <td>{props.expense.name}</td>
+          <td>{props.expense.date}</td>
+          <td>$ {props.expense.amount}</td>
         </tr>
       </tbody>
     </table>
