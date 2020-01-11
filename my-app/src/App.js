@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/Header";
 import Expense from "./components/Expense";
-import Table from "./components/Table";
+import ListOfAddedExpenses from "./components/ListOfAddedExpenses";
 import AddedExpense from "./components/AddedExpense";
 
 class App extends React.Component {
@@ -20,16 +20,16 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.addExpenseToList = this.addExpenseToList.bind(this);
+    //this.addExpenseToList = this.addToExpenseArray.bind(this);
   }
 
   handleChange(event) {
-    console.log("changed");
+    //console.log("changed");
     const { name, value } = event.target;
     const expense = { ...this.state.expense };
     expense[name] = value;
-    console.log(name);
-    console.log(value);
+    //console.log(name);
+    //console.log(value);
     this.setState({
       expense
     });
@@ -38,28 +38,33 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const entireExpenseObject = this.state.expenses;
+    const entireExpenseObject = { ...this.state.expense };
     entireExpenseObject.id = Date.now();
     //get updated version of state
-    entireExpenseObject.push(this.state.expense);
-    this.setState({ expenses: entireExpenseObject });
+    // entireExpenseObject.push(this.state.expenses);
+    // this.setState({ expenses: entireExpenseObject });
     console.log(entireExpenseObject);
+    // console.log(this.state.expenses);
+    this.setState({
+      expenses: [...this.state.expenses, { entireExpenseObject }]
+    });
     console.log(this.state.expenses);
-    this.addExpenseToList(entireExpenseObject);
+    // this.addToExpenseArray(entireExpenseObject);
   }
 
-  addExpenseToList(event) {
-    console.log("expense added");
-    //get expense array here
-    const addedExpenses = [this.state.expenses];
-    //pull newest expense
-    //const newestExpense = addedExpenses.length - 1;
-    //add it to the list
-    this.setState({
-      addedExpenses
-    });
-    console.log(addedExpenses);
-  }
+  // addToExpenseArray(event) {
+  //   console.log("expense added");
+  //   //get expense array here
+  //   const addedExpenses = [...this.state.expenses, event];
+  //   //pull newest expense
+  //   //const newestExpense = addedExpenses.length - 1;
+  //   //add it to the list
+  //   this.setState({
+  //     addedExpenses
+  //   });
+  //   //console.log(addedExpenses);
+  //   console.log(addedExpenses);
+  // }
 
   render() {
     return (
@@ -70,10 +75,10 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <Table />
+        <ListOfAddedExpenses />
         <AddedExpense
-          expense={this.state.expenses}
-          addExpense={this.addExpenseToList}
+          expense={this.state.expense}
+          addExpense={this.addToExpenseArray}
           //handleChange={this.handleChange}
         />
       </div>

@@ -1,18 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import AddedExpense from "./AddedExpense";
+// import AddedExpense from "./AddedExpense";
 
 function ListOfAddedExpenses() {
   return (
     <table>
-      <tbody>
+      <thead>
         <tr>
           <th>Type</th>
           <th>Name</th>
           <th>Date</th>
           <th>Amount</th>
         </tr>
-      </tbody>
+      </thead>
+      <tbody>{/* <AddedExpense /> */}</tbody>
     </table>
   );
 }
