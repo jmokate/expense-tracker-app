@@ -39,15 +39,17 @@ class App extends React.Component {
     event.preventDefault();
 
     const entireExpenseObject = { ...this.state.expense };
+    //const expensesArray = { ...this.state.expenses };
     entireExpenseObject.id = Date.now();
     //get updated version of state
-    // entireExpenseObject.push(this.state.expenses);
+    //expensesArray.push(entireExpenseObject);
     // this.setState({ expenses: entireExpenseObject });
     console.log(entireExpenseObject);
     // console.log(this.state.expenses);
     this.setState({
       expenses: [...this.state.expenses, { entireExpenseObject }]
     });
+
     console.log(this.state.expenses);
     // this.addToExpenseArray(entireExpenseObject);
   }
@@ -75,11 +77,19 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <ListOfAddedExpenses />
+
         <AddedExpense
           expense={this.state.expense}
-          addExpense={this.addToExpenseArray}
+          //addExpense={this.addToExpenseArray}
           //handleChange={this.handleChange}
+        />
+
+        <ListOfAddedExpenses
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          expenses={this.state.expenses}
+          key={this.state.expenses.id}
+          expense={this.state.expense.name}
         />
       </div>
     );

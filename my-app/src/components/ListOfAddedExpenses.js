@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import AddedExpense from "./AddedExpense";
 
-function ListOfAddedExpenses() {
+function ListOfAddedExpenses(props) {
   return (
     <table>
       <thead>
@@ -13,7 +13,12 @@ function ListOfAddedExpenses() {
           <th>Amount</th>
         </tr>
       </thead>
-      <tbody>{/* <AddedExpense /> */}</tbody>
+      <tbody>
+        <tr>
+          <td>{props.expenses.entireExpenseObject}</td>
+          <td>{props.expense}</td>
+        </tr>
+      </tbody>
     </table>
   );
 }
