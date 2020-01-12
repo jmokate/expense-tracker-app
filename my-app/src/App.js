@@ -69,6 +69,10 @@ class App extends React.Component {
   // }
 
   render() {
+    const addedExpenseList = this.state.expenses.map(item => (
+      <ListOfAddedExpenses key={item.id} completedExpense={item} />
+    ));
+
     return (
       <div>
         <Header />
@@ -84,13 +88,9 @@ class App extends React.Component {
           //handleChange={this.handleChange}
         />
 
-        <ListOfAddedExpenses
-          handleSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          expenses={this.state.expenses}
-          key={this.state.expenses.id}
-          expense={this.state.expense.name}
-        />
+        {addedExpenseList}
+
+        <ListOfAddedExpenses expensesArray={this.state.expenses} />
       </div>
     );
   }
