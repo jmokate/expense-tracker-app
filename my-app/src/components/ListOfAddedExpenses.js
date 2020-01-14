@@ -1,32 +1,41 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Table } from "react-bootstrap";
 // import AddedExpense from "./AddedExpense";
 
 function ListOfAddedExpenses(props) {
-  // const completedExpense = props.expenseArray(item =>
-  //     <tr>
-  //       <td>{props.expensesArray.type}</td>
-  //     </tr>
-  // );
+  console.log(props.expensesArray);
+  const completedExpense = props.expensesArray.map(item => {
+    return (
+      <tr>
+        <td>{item.entireExpenseObject.type}</td>
+        <td>{item.entireExpenseObject.name}</td>
+        <td>{item.entireExpenseObject.date}</td>
+        <td>$ {item.entireExpenseObject.amount}</td>
+        <td>
+          <Button
+            variant='danger'
+            onClick={() => props.deleteExpense(item.entireExpenseObject.id)}
+          >
+            &#9747;
+          </Button>
+        </td>
+      </tr>
+    );
+  });
+
   return (
-    <table>
+    <Table responsive striped bordered className='table'>
       <thead>
         <tr>
-          <th>Type</th>
-          <th>Name</th>
-          <th>Date</th>
-          <th>Amount</th>
+          <th sm='3'>Type</th>
+          <th sm='3'>Name</th>
+          <th sm='3'>Date</th>
+          <th sm='3'>Amount</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>{props.completedExpense}</td>
-          <td>Name</td>
-          <td>Date</td>
-          <td>Amount</td>
-        </tr>
-      </tbody>
-    </table>
+      <tbody>{completedExpense}</tbody>
+    </Table>
   );
 }
 

@@ -20,7 +20,17 @@ class App extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.addExpenseToList = this.addToExpenseArray.bind(this);
+    this.deleteExpense = this.deleteExpense.bind(this);
+  }
+
+  componentDidMount() {
+    console.log("mount!");
+    const storage = JSON.parse(localStorage.getItem("expense")) || [];
+    this.setState({ expenses: storage });
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem("expense", JSON.stringify(this.state.expenses));
   }
 
   handleChange(event) {
@@ -39,40 +49,55 @@ class App extends React.Component {
     event.preventDefault();
 
     const entireExpenseObject = { ...this.state.expense };
+
     //const expensesArray = { ...this.state.expenses };
     entireExpenseObject.id = Date.now();
-    //get updated version of state
-    //expensesArray.push(entireExpenseObject);
-    // this.setState({ expenses: entireExpenseObject });
-    console.log(entireExpenseObject);
-    // console.log(this.state.expenses);
-    this.setState({
-      expenses: [...this.state.expenses, { entireExpenseObject }]
-    });
+    if (
+      entireExpenseObject.type === "" ||
+      entireExpenseObject.name === "" ||
+      entireExpenseObject.date === "" ||
+      entireExpenseObject.amount === ""
+    ) {
+      alert("missing something?");
+    } else {
+      //get updated version of state
+      //expensesArray.push(entireExpenseObject);
+      // this.setState({ expenses: entireExpenseObject });
+      console.log(entireExpenseObject);
+      // console.log(this.state.expenses);
+      this.setState({
+        expenses: [...this.state.expenses, { entireExpenseObject }]
+      });
+
+      this.setState({
+        expense: {
+          type: "",
+          name: "",
+          date: "",
+          amount: ""
+        }
+      });
+    }
 
     console.log(this.state.expenses);
     // this.addToExpenseArray(entireExpenseObject);
   }
 
-  // addToExpenseArray(event) {
-  //   console.log("expense added");
-  //   //get expense array here
-  //   const addedExpenses = [...this.state.expenses, event];
-  //   //pull newest expense
-  //   //const newestExpense = addedExpenses.length - 1;
-  //   //add it to the list
-  //   this.setState({
-  //     addedExpenses
-  //   });
-  //   //console.log(addedExpenses);
-  //   console.log(addedExpenses);
-  // }
+  deleteExpense(event) {
+    console.log(event);
+    const listedExpenses = [...this.state.expenses];
+    // get the current array of expenses
+    // filter out the expense's id matches the one trying to delete
+    const savedExpenses = listedExpenses.filter(item => {
+      if (item.entireExpenseObject.id !== event) {
+        return listedExpenses;
+      }
+    });
+    this.setState({ expenses: savedExpenses });
+    //update the state of new expenses
+  }
 
   render() {
-    const addedExpenseList = this.state.expenses.map(item => (
-      <ListOfAddedExpenses key={item.id} completedExpense={item} />
-    ));
-
     return (
       <div>
         <Header />
@@ -82,15 +107,12 @@ class App extends React.Component {
           handleSubmit={this.handleSubmit}
         />
 
-        <AddedExpense
-          expense={this.state.expense}
-          //addExpense={this.addToExpenseArray}
-          //handleChange={this.handleChange}
+        {/* <AddedExpense expense={this.state.expense} /> */}
+
+        <ListOfAddedExpenses
+          expensesArray={this.state.expenses}
+          deleteExpense={this.deleteExpense}
         />
-
-        {addedExpenseList}
-
-        <ListOfAddedExpenses expensesArray={this.state.expenses} />
       </div>
     );
   }

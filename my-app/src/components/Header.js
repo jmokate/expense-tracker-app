@@ -4,9 +4,9 @@ import { Container } from "react-bootstrap";
 
 function Header() {
   return (
-    <Container>
-      <h1>Expense Tracker</h1>
-      <h2>Add New Item</h2>
+    <Container className='text-center'>
+      <h1>Expense Tracker</h1> <br />
+      <h2>Add New Item</h2> <br />
     </Container>
   );
 }

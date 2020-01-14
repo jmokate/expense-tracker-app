@@ -1,16 +1,16 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 function Expense(props) {
   return (
     <Container>
       <form onSubmit={props.handleSubmit}>
         <Row>
-          <Col>
+          <Col sm='3'>
             <span>Type: </span>
           </Col>
-          <Col>
+          <Col sm='3'>
             <select
               name='type'
               value={props.expense.type}
@@ -24,10 +24,10 @@ function Expense(props) {
               <option value='other'>Other</option>
             </select>
           </Col>
-          <Col>
+          <Col sm='3'>
             <span>Name: </span>
           </Col>
-          <Col>
+          <Col sm='3'>
             <input
               type='text'
               name='name'
@@ -38,10 +38,10 @@ function Expense(props) {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col sm='3'>
             <span>Date: </span>
           </Col>
-          <Col>
+          <Col sm='3'>
             <input
               type='date'
               name='date'
@@ -49,22 +49,27 @@ function Expense(props) {
               value={props.expense.date}
             />
           </Col>
-          <Col>
+          <Col sm='3'>
             <span>Amount: </span>
           </Col>
-          <Col>
+          <Col sm='3'>
             <input
               type='number'
               name='amount'
-              placeholder='$ ?'
+              placeholder='How much did it cost?'
               onChange={props.handleChange}
               value={props.expense.amount}
             />
           </Col>
+        </Row>{" "}
+        <br />
+        <Row>
+          <Col className='text-right'>
+            <Button type='submit' variant='success'>
+              Add Expense
+            </Button>
+          </Col>
         </Row>
-        <Col>
-          <button>Add Expense</button>
-        </Col>
       </form>
     </Container>
   );
