@@ -6,6 +6,15 @@ View it on [Heroku](https://mokate-expense-tracker.herokuapp.com/)
 
 ![img of project](https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
 
+## Summary
+
+This application allows you to keep track of expenses. The purpose of creating this project is way to learn the React library
+
+## Author
+
+*John Mokate
+
+## Details
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
