@@ -4,8 +4,8 @@ Expense Tracker using React
 
 View it on [Heroku](https://mokate-expense-tracker.herokuapp.com/)
 
-![img of project]
-(https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
+![img of project](https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
