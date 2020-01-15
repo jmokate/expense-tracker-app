@@ -12,7 +12,7 @@ This application allows you to keep track of expenses. The purpose of creating t
 
 ## Author
 
-*John Mokate
+* John Mokate
 
 ## Details
 
