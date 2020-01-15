@@ -4,7 +4,6 @@ import "./App.css";
 import Header from "./components/Header";
 import Expense from "./components/Expense";
 import ListOfAddedExpenses from "./components/ListOfAddedExpenses";
-import AddedExpense from "./components/AddedExpense";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +23,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mount!");
     const storage = JSON.parse(localStorage.getItem("expense")) || [];
     this.setState({ expenses: storage });
   }
@@ -34,12 +32,10 @@ class App extends React.Component {
   }
 
   handleChange(event) {
-    //console.log("changed");
     const { name, value } = event.target;
     const expense = { ...this.state.expense };
     expense[name] = value;
-    //console.log(name);
-    //console.log(value);
+
     this.setState({
       expense
     });
@@ -50,7 +46,6 @@ class App extends React.Component {
 
     const entireExpenseObject = { ...this.state.expense };
 
-    //const expensesArray = { ...this.state.expenses };
     entireExpenseObject.id = Date.now();
     if (
       entireExpenseObject.type === "" ||
@@ -60,11 +55,6 @@ class App extends React.Component {
     ) {
       alert("missing something?");
     } else {
-      //get updated version of state
-      //expensesArray.push(entireExpenseObject);
-      // this.setState({ expenses: entireExpenseObject });
-      console.log(entireExpenseObject);
-      // console.log(this.state.expenses);
       this.setState({
         expenses: [...this.state.expenses, { entireExpenseObject }]
       });
@@ -78,23 +68,17 @@ class App extends React.Component {
         }
       });
     }
-
-    console.log(this.state.expenses);
-    // this.addToExpenseArray(entireExpenseObject);
   }
 
   deleteExpense(event) {
-    console.log(event);
     const listedExpenses = [...this.state.expenses];
-    // get the current array of expenses
-    // filter out the expense's id matches the one trying to delete
+
     const savedExpenses = listedExpenses.filter(item => {
       if (item.entireExpenseObject.id !== event) {
         return listedExpenses;
       }
     });
     this.setState({ expenses: savedExpenses });
-    //update the state of new expenses
   }
 
   render() {
@@ -106,8 +90,6 @@ class App extends React.Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-
-        {/* <AddedExpense expense={this.state.expense} /> */}
 
         <ListOfAddedExpenses
           expensesArray={this.state.expenses}

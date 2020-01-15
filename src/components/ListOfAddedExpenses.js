@@ -4,7 +4,6 @@ import { Button, Table } from "react-bootstrap";
 // import AddedExpense from "./AddedExpense";
 
 function ListOfAddedExpenses(props) {
-  console.log(props.expensesArray);
   const completedExpense = props.expensesArray.map(item => {
     return (
       <tr>
