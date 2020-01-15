@@ -2,7 +2,7 @@
 
 Expense Tracker using React
 
-View it on [Heroku] (https://mokate-expense-tracker.herokuapp.com/)
+View it on [https://mokate-expense-tracker.herokuapp.com/] 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
