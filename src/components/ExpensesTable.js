@@ -1,20 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Table } from "react-bootstrap";
-// import AddedExpense from "./AddedExpense";
 
-function ListOfAddedExpenses(props) {
-  const completedExpense = props.expensesArray.map(item => {
+function ExpensesTable(props) {
+  const completedExpense = props.expensesArray.map(expense => {
     return (
       <tr>
-        <td>{item.entireExpenseObject.type}</td>
-        <td>{item.entireExpenseObject.name}</td>
-        <td>{item.entireExpenseObject.date}</td>
-        <td>$ {item.entireExpenseObject.amount}</td>
+        <td>{expense.type}</td>
+        <td>{expense.name}</td>
+        <td>{expense.date}</td>
+        <td>$ {expense.amount}</td>
         <td>
           <Button
             variant='danger'
-            onClick={() => props.deleteExpense(item.entireExpenseObject.id)}
+            onClick={() => props.deleteExpense(expense.id)}
           >
             &#9747;
           </Button>
@@ -38,4 +37,4 @@ function ListOfAddedExpenses(props) {
   );
 }
 
-export default ListOfAddedExpenses;
+export default ExpensesTable;

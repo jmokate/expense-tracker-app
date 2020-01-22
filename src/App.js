@@ -23,8 +23,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const storage = JSON.parse(localStorage.getItem("expense")) || [];
-    this.setState({ expenses: storage });
+    const savedExpenses = JSON.parse(localStorage.getItem("expense")) || [];
+    this.setState({ expenses: savedExpenses });
   }
 
   componentDidUpdate() {
@@ -44,39 +44,28 @@ class App extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const entireExpenseObject = { ...this.state.expense };
+    const expense = { ...this.state.expense, id: Date.now() };
 
-    entireExpenseObject.id = Date.now();
-    if (
-      entireExpenseObject.type === "" ||
-      entireExpenseObject.name === "" ||
-      entireExpenseObject.date === "" ||
-      entireExpenseObject.amount === ""
-    ) {
-      alert("missing something?");
-    } else {
-      this.setState({
-        expenses: [...this.state.expenses, { entireExpenseObject }]
-      });
-
-      this.setState({
-        expense: {
-          type: "",
-          name: "",
-          date: "",
-          amount: ""
-        }
-      });
+    if (!expense.type || !expense.name || !expense.date || !expense.amount) {
+      return alert("missing something?");
     }
+    this.setState({
+      expenses: [...this.state.expenses, expense]
+    });
+
+    this.setState({
+      expense: {
+        type: "",
+        name: "",
+        date: "",
+        amount: ""
+      }
+    });
   }
 
   deleteExpense(event) {
-    const listedExpenses = [...this.state.expenses];
-
-    const savedExpenses = listedExpenses.filter(item => {
-      if (item.entireExpenseObject.id !== event) {
-        return listedExpenses;
-      }
+    const savedExpenses = this.state.expenses.filter(expense => {
+      return expense.id !== event;
     });
     this.setState({ expenses: savedExpenses });
   }
