@@ -2,7 +2,19 @@
 
 Expense Tracker using React
 
-View it on [Heroku](https://mokate-expense-tracker.herokuapp.com/) 
+View it on [Heroku](https://mokate-expense-tracker.herokuapp.com/)
+
+![img of project](https://github.com/jmokate/expense-tracker-app/blob/master/expensetrackerimg.PNG)
+
+## Summary
+
+This application allows the user to keep track of expenses. The purpose of creating this project is to learn the React library, refine Vanilla Javascript skills and start with Bootstrap. I became familiarized with React components, class components, stateless components and state. This project was challenging but a lot of fun to create and I am excited about working more in React. More projects to come, stay tuned!
+
+## Author
+
+* **John Mokate** - Programmer [Website](https://mokate.tumblr.com) **|** [LinkedIn](https://www.linkedin.com/in/mokate/)
+
+## Details
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
