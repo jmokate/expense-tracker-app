@@ -2,8 +2,8 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/Header";
-import Expense from "./components/Expense";
-import ListOfAddedExpenses from "./components/ListOfAddedExpenses";
+import ExpenseForm from "./components/ExpenseForm";
+import ExpensesTable from "./components/ExpensesTable";
 
 class App extends React.Component {
   constructor(props) {
@@ -74,13 +74,13 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <Expense
+        <ExpenseForm
           expense={this.state.expense}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
 
-        <ListOfAddedExpenses
+        <ExpensesTable
           expensesArray={this.state.expenses}
           deleteExpense={this.deleteExpense}
         />
